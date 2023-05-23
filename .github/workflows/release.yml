@@ -25,6 +25,20 @@ jobs:
       - name: Zip files
         run: zip -r iosevka-comfy.zip ${{github.workspace}}/dist/iosevka-comfy
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: iosevka-comfy
+          path: iosevka-comfy.zip
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: iosevka-comfy
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
