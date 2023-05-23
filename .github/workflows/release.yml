@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    tags: [ "release-*" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build custom iosevka fonts
+        run: podman run -it -v $(pwd):/build avivace/iosevka-build
