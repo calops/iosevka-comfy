@@ -7,7 +7,7 @@
 family = "Iosevka Comfy"    # Font menu family name
 spacing = "normal"          # Optional; Values: `normal`, `quasi-proportional`, `quasi-proportional-extension-only`, `term`, `fontconfig-mono`, or `fixed`
 serifs = "sans"             # Optional; Values: `sans` or `slab`
-export-glyph-names = false  # Set this to true for ligature support in Kitty (increased file size)
+export-glyph-names = true   # Set this to true for ligature support in Kitty (increased file size)
 
 [buildPlans.iosevka-comfy.variants.design]
 cv01 = 1    # A cap straight
