@@ -26,7 +26,7 @@ jobs:
         run: zip -r iosevka-comfy.zip ${{github.workspace}}/dist/iosevka-comfy
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: iosevka-comfy
           path: iosevka-comfy.zip
@@ -36,7 +36,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: iosevka-comfy
 
