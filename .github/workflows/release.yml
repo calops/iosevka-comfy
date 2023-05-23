@@ -11,4 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build custom iosevka fonts
-        run: podman run -it -v $(pwd):/build avivace/iosevka-build
+        run: podman run -it -v $(GITHUB_WORKSPACE):/build avivace/iosevka-build
+
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Create zip
+        run: zip -r dist/iosevka-comfy.zip dist/iosevka-comfy
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/iosevka-comfy.zip
+          asset_name: iosevka-comfy.zip
+          asset_content_type: application/zip
